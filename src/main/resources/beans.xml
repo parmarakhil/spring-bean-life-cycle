@@ -1,0 +1,36 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+
+	<!-- <context:annotation-config/> -->
+	
+	<bean id="studentDAO"
+		class="com.akhil.spring.springbeanlifecycle.dao.usingxml.StudentDAO"
+		init-method="init" destroy-method="destroy">
+		<!-- collaborators and configuration for this bean go here -->
+		<property name="driver" value="org.postgresql.Driver"></property>
+		<property name="url"
+			value="jdbc:postgresql://localhost:5432/test"></property>
+		<property name="username" value="akhil"></property>
+		<property name="password" value="akhil"></property>
+	</bean>
+	
+	<!-- The below class is initialized to enable PostConstruct and PreDestroy annotaions  -->
+	<bean
+		class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"></bean>
+
+	<bean id="hello"
+		class="com.akhil.spring.springbeanlifecycle.dao.usinginterface.Hello"></bean>
+	<bean id="hi"
+		class="com.akhil.spring.springbeanlifecycle.dao.usingannotation.Hi"></bean>
+
+
+</beans>
